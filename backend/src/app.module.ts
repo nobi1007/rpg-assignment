@@ -3,8 +3,12 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { GraphQLModule } from "@nestjs/graphql";
-import { HelloWorldResolver } from './hello-world/hello-world.resolver';
-import { HelloWorldService } from './hello-world/hello-world.service';
+import { UserResolver } from './user/user.resolver';
+import { UserService } from './user/user.service';
+import { BlogGateway } from './blog/blog.gateway';
+import { BlogResolver } from './blog/blog.resolver';
+import { BlogService } from './blog/blog.service';
+import { PersistenceService } from './persistence/persistence.service';
 import { join } from 'path'
 
 @Module({
@@ -15,6 +19,14 @@ import { join } from 'path'
     }),
   ],
   controllers: [AppController],
-  providers: [AppService, HelloWorldResolver, HelloWorldService],
+  providers: [
+    AppService,
+    PersistenceService,
+    UserResolver,
+    UserService,
+    BlogGateway,
+    BlogResolver,
+    BlogService,
+  ],
 })
-export class AppModule {}
+export class AppModule { }

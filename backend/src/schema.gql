@@ -2,10 +2,53 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type HelloWorldModel {
-  value: String!
+type User {
+  id: String!
+  name: String!
+  email: String!
+}
+
+type AuthResponse {
+  success: Boolean!
+  message: String
+  user: User
+}
+
+type Blog {
+  id: String!
+  title: String!
+  content: String!
+  authorId: String!
+  authorName: String!
+  authorEmail: String!
+  createdAt: String!
 }
 
 type Query {
-  sayHello: HelloWorldModel!
+  hello: String!
+  users: [User!]!
+  blogs: [Blog!]!
+}
+
+type Mutation {
+  createAccount(input: CreateAccountInput!): AuthResponse!
+  login(input: LoginInput!): AuthResponse!
+  createBlog(input: CreateBlogInput!): Blog!
+}
+
+input CreateAccountInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+input CreateBlogInput {
+  title: String!
+  content: String!
+  authorId: String!
 }
